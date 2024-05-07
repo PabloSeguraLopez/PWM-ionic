@@ -1,12 +1,20 @@
 import { Component } from '@angular/core';
-import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
+import {environment} from "../assets/environment";
+import {getAnalytics} from "@angular/fire/analytics";
+import {initializeApp} from "@angular/fire/app";
+import {IonicModule} from "@ionic/angular";
 
+// Initialize Firebase
+const app = initializeApp(environment.firebase);
+const analytics = getAnalytics(app);
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html',
   standalone: true,
-  imports: [IonApp, IonRouterOutlet],
+  imports: [IonicModule
+  ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  constructor() {}
+  title = 'MisTops';
 }

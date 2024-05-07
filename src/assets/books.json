@@ -1,0 +1,27 @@
+[
+  {
+    "name": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "value": 9
+  },
+  {
+    "name": "1984",
+    "author": "George Orwell",
+    "value": 10
+  },
+  {
+    "name": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "value": 9
+  },
+  {
+    "name": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "value": 8
+  },
+  {
+    "name": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "value": 9
+  }
+]
