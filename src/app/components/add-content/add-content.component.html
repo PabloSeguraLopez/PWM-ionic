@@ -1,0 +1,37 @@
+<div id="add-content-page" class="container p-2">
+  <h1 class="add-content-title text display-3" style="color: #B38867">Add to ranking</h1>
+  <div class="add-content-container row row-cols-1 row-cols-md-2 justify-content-center align-items-center gap-5">
+    <div class="col col-md-4">
+      <div>
+        <img class="img-fluid position-relative" ngSrc="{{ content?.imageUrl }}" alt="" fill/>
+      </div>
+    </div>
+    <div class="add-content-form col col-md-5 gy-4">
+
+      <div class="row gy-4 align-items-center">
+        <div class="input-container d-flex flex-column gap-3">
+          <div>
+            <h2 class="text text-secondary" style="font-size: 1.5em"> Title:</h2><p>{{ content?.title }}</p>
+          </div>
+          <div>
+            <h2 class="text text-secondary" style="font-size: 1.5em "> Author:</h2><p>{{ content?.author }}</p>
+          </div>
+          <div>
+            <label class="text text-secondary font-weight-bold" style="font-size: 1.5em" for="add-content-review-textarea">Review:</label>
+            <textarea id="add-content-review-textarea" placeholder="Write a review" rows="5" class="form-control" [(ngModel)]="reviewText"></textarea>
+          </div>
+          <div>
+            <label class="text text-secondary font-weight-bold" style="font-size: 1.5em" for="add-content-score-select">Score:</label>
+            <select id="add-content-score-select" class="form-select" [(ngModel)]="rating">
+              <option [value]="rating" *ngFor="let rating of ratings">{{rating}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="button-container d-flex justify-content-center gap-3">
+          <button class="button" type="button" (click)="submit()">Add to your ranking</button>
+          <button style="background-color: transparent; color:darkred; border: none" type="button" (click)="close()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
