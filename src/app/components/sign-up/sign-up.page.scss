@@ -1,0 +1,29 @@
+#question-text {
+  font-size: 1em;
+  cursor: pointer;
+  color: darkblue;
+}
+.list-group-item{
+  color:red;
+}
+
+#question-text:hover {
+  text-decoration: underline;
+}
+
+.form-button {
+  background-color: #422F6B;
+  color: white;
+  padding: 0.6em 1em;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .landscape-image-figure {
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    justify-content: center;
+    overflow: hidden;
+  }
+}

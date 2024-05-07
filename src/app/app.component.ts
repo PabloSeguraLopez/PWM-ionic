@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {environment} from "../assets/environment";
+import {environment} from "../environments/environment";
 import {getAnalytics} from "@angular/fire/analytics";
 import {initializeApp} from "@angular/fire/app";
 import {IonicModule} from "@ionic/angular";

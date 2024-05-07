@@ -11,11 +11,15 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
     path: 'login',
     loadComponent: () => import('./components/login/login.page').then( m => m.LoginPage)
+  },
+  {
+    path: 'sign-up',
+    loadComponent: () => import('./components/sign-up/sign-up.page').then( m => m.SignUpPage)
   },
 ];

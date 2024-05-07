@@ -1,0 +1,74 @@
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-lg="8">
+      <ion-title>Sign Up</ion-title>
+      </ion-col>
+    </ion-row>
+
+        <form id="form" class="form" (submit)="onSubmit()">
+
+            <ion-row class="ion-align-items-center">
+              <ion-col size="12" size-lg="8">
+                <ion-row class="ion-justify-content-start ion-align-items-center">
+                  <ion-col size="1">
+                    <ion-img src="assets/icons/mail.svg" alt=""></ion-img>
+                  </ion-col>
+                  <ion-col size="10" size-lg="6">
+                    <ion-input placeholder="Email" name="email" [(ngModel)]="email" required></ion-input>
+                  </ion-col>
+                </ion-row>
+
+                <ion-row class="ion-justify-content-start ion-align-items-center">
+                  <ion-col size="1">
+                    <ion-img alt="" src="assets/images/username.png"></ion-img>
+                  </ion-col>
+                  <ion-col size="10" size-lg="6">
+                    <ion-input placeholder="Username" name="username" [(ngModel)]="username" (ionChange)="satisfyRequirements()" required></ion-input>
+                  </ion-col>
+                </ion-row>
+
+                <ion-row class="ion-justify-content-start ion-align-items-center">
+                  <ion-col size="1">
+                    <ion-img alt="" src="assets/images/password.png"></ion-img>
+                  </ion-col>
+                  <ion-col size="10" size-lg="6">
+                    <ion-input id="input-password" name="password" [(ngModel)]="password" (ionChange)="satisfyRequirements()"
+                               type="password" placeholder="Password" required></ion-input>
+                  </ion-col>
+                </ion-row>
+
+                <ion-row class="ion-justify-content-start ion-align-items-center">
+                  <ion-col size="1">
+                    <ion-img alt="" src="assets/images/password.png"></ion-img>
+                  </ion-col>
+                  <ion-col size="10" size-lg="6">
+                    <ion-input id="input-confirm-password" name="confirmPassword" [(ngModel)]="confirmPassword"
+                               (ionChange)="satisfyRequirements()" type="password" placeholder="Confirm password" required></ion-input>
+                  </ion-col>
+                </ion-row>
+
+              </ion-col>
+              <ion-col size="12" size-lg="4">
+                <ion-list id="passwordRequirements">
+                  <ion-item *ngIf="!length" class="list-group-item">8 characters</ion-item>
+                  <ion-item *ngIf="!uppercase" class="list-group-item">One uppercase letter</ion-item>
+                  <ion-item *ngIf="!lowercase" class="list-group-item">One lowercase letter</ion-item>
+                  <ion-item *ngIf="!number" class="list-group-item">One number</ion-item>
+                  <ion-item *ngIf="!special" class="list-group-item">One special character</ion-item>
+                  <ion-item *ngIf="!passwords" class="list-group-item">Passwords match</ion-item>
+                </ion-list>
+              </ion-col>
+            </ion-row>
+          <ion-row class="ion-justify-content-center">
+            <a id="question-text" href="/login">Already have an account?</a>
+          </ion-row>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="12" size-sm="10" size-md="8" size-lg="6">
+              <ion-button id="button" expand="block" type="submit" [disabled]="!requirements">Sign Up</ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+  </ion-grid>
+</ion-content>
+
