@@ -25,6 +25,5 @@ bootstrapApplication(AppComponent, {
       provideFirestore(() => getFirestore()),
       provideAuth(() => getAuth())
     ]),
-    importProvidersFrom(provideFirebaseApp(() => initializeApp({"projectId":"mistops-c0bce","appId":"1:794098111547:web:f42a73c9bf460a264e781e","databaseURL":"https://mistops-c0bce-default-rtdb.europe-west1.firebasedatabase.app","storageBucket":"mistops-c0bce.appspot.com","apiKey":"AIzaSyADtDo9LnPcWDsHYm-kDbGm0R_q4Nc70Tc","authDomain":"mistops-c0bce.firebaseapp.com","messagingSenderId":"794098111547","measurementId":"G-FVWBHQG99P"}))), importProvidersFrom(provideAuth(() => getAuth())), importProvidersFrom(provideFirestore(() => getFirestore())),
-  ],
+  ]
 });

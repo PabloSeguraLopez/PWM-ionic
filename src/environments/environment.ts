@@ -2,6 +2,11 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import {importProvidersFrom} from "@angular/core";
+import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
+import {getAuth, provideAuth} from "@angular/fire/auth";
+import {getFirestore, provideFirestore} from "@angular/fire/firestore";
+
 export const environment = {
   production: false,
   firebase: {
@@ -10,10 +15,11 @@ export const environment = {
     projectId: "mistops-c0bce",
     storageBucket: "mistops-c0bce.appspot.com",
     messagingSenderId: "794098111547",
-    appId: "1:794098111547:web:2a3973a72bd716364e781e",
+    appId: "1:794098111547:web:f42a73c9bf460a264e781e",
     measurementId: "G-5MEF921126"
   }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

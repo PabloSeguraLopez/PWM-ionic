@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {environment} from "../assets/environment";
 import {getAnalytics} from "@angular/fire/analytics";
 import {initializeApp} from "@angular/fire/app";
 import {IonicModule} from "@ionic/angular";
 
 // Initialize Firebase
-const app = initializeApp(environment.firebase);
-const analytics = getAnalytics(app);
 @Component({
   selector: 'app-root',
   standalone: true,
