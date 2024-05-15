@@ -6,7 +6,7 @@ import { ReviewComponent } from "./review/review.component";
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { ContentService } from "../../services/content.service";
 import { AddContentComponent } from "../add-content/add-content.component";
-import { IonicModule, IonModal, ModalController } from "@ionic/angular";
+import { IonicModule, IonModal, ModalController, ToastController } from "@ionic/angular";
 
 @Component({
   selector: 'app-content',
@@ -31,8 +31,9 @@ export class ContentComponent implements OnInit {
   isAddContentOpen: boolean = false;
 
   @ViewChild(IonModal) modal?: IonModal;
+  isFavorite: boolean = false;
 
-  constructor(private modalController: ModalController, private platformService: PlatformService, private injector: Injector, private route: ActivatedRoute) { }
+  constructor(private toastController: ToastController, private modalController: ModalController, private platformService: PlatformService, private injector: Injector, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -57,13 +58,32 @@ export class ContentComponent implements OnInit {
   }
 
   async openAddContentModal() {
-    const modal = await this.modalController.create({
+    await this.modalController.create({
       component: AddContentComponent,
       componentProps: {
         content: this.content,
         contentService: this.contentService
       }
-    })
-    modal.present();
+    }).then(modal => modal.present());
+  }
+
+  addFavorite() {
+    this.toggleFavorite();
+    this.toastController.create({
+      message: 'Added to favorites',
+      duration: 2000
+    }).then(toast => toast.present());
+  }
+
+  removeFavorite() {
+    this.toggleFavorite();
+    this.toastController.create({
+      message: 'Removed from favorites',
+      duration: 2000
+    }).then(toast => toast.present());
+  }
+
+  toggleFavorite() {
+    this.isFavorite = !this.isFavorite;
   }
 }

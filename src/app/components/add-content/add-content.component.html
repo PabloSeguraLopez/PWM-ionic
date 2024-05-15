@@ -1,5 +1,5 @@
 <ion-content id="add-content-page" class="ion-padding">
-  <h1 class="add-content-title text display-3" style="color: #B38867">Add to ranking</h1>
+  <h1 class="add-content-title text display-3">Add to ranking</h1>
   <div class="add-content-container row row-cols-1 row-cols-md-2 justify-content-center align-items-center gap-5">
     <div class="d-none d-md-block col-md-4">
       <div>
@@ -11,14 +11,14 @@
       <div class="row gy-4 align-items-center">
         <div class="input-container d-flex flex-column gap-3">
           <div>
-            <h2 class="text text-secondary" style="font-size: 1.5em"> Title:</h2><p>{{ content?.title }}</p>
+            <h2 class="text text-secondary"> Title:</h2><p>{{ content?.title }}</p>
           </div>
           <div>
-            <h2 class="text text-secondary" style="font-size: 1.5em "> Author:</h2><p>{{ content?.author }}</p>
+            <h2 class="text text-secondary"> Author:</h2><p>{{ content?.author }}</p>
           </div>
           <div>
-            <label class="text text-secondary font-weight-bold" style="font-size: 1.5em" for="add-content-review-textarea">Review:</label>
-            <textarea id="add-content-review-textarea" placeholder="Write a review" rows="5" class="form-control" [(ngModel)]="reviewText"></textarea>
+            <ion-label class="text text-secondary font-weight-bold">Review:</ion-label>
+            <ion-textarea id="add-content-review-textarea" fill="solid" placeholder="Write a review" rows="5" [(ngModel)]="reviewText"></ion-textarea>
           </div>
           <div>
             <ion-select label="Score" id="add-content-score-select" [(ngModel)]="rating">
