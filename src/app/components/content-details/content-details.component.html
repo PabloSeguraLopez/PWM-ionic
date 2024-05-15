@@ -11,12 +11,7 @@
             <i class="bi bi-star-fill" style="color: orange"></i>
           </span>
         </div>
-        <ion-button id="btn-add-content" expand="block">Add to my rankings</ion-button>
-        <ion-modal trigger="btn-add-content" (willDismiss)="$event">
-          <ng-template>
-            <app-add-content [contentService]="contentService" [content]="content" (closeEvent)="toggleAddContent()"></app-add-content>
-          </ng-template>
-        </ion-modal>
+        <ion-button id="btn-add-content" expand="block" (click)="openAddContentModal()">Add to my rankings</ion-button>
       </div>
     </div>
     <div class="col gy-3">

@@ -6,7 +6,7 @@ import { ReviewComponent } from "./review/review.component";
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { ContentService } from "../../services/content.service";
 import { AddContentComponent } from "../add-content/add-content.component";
-import { IonicModule, IonModal } from "@ionic/angular";
+import { IonicModule, IonModal, ModalController } from "@ionic/angular";
 
 @Component({
   selector: 'app-content',
@@ -32,7 +32,7 @@ export class ContentComponent implements OnInit {
 
   @ViewChild(IonModal) modal?: IonModal;
 
-  constructor(private platformService: PlatformService, private injector: Injector, private route: ActivatedRoute) { }
+  constructor(private modalController: ModalController, private platformService: PlatformService, private injector: Injector, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -56,16 +56,14 @@ export class ContentComponent implements OnInit {
     return this.platformService.getPlatformIconUrl(platform);
   }
 
-  toggleAddContent() {
-    this.isAddContentOpen = !this.isAddContentOpen;
-  }
-
-  onWillDismiss($event: Event) {
-    console.log('will dismiss', $event);
-
-  }
-
-  cancel() {
-    this.modal?.dismiss(null, 'cancel');
+  async openAddContentModal() {
+    const modal = await this.modalController.create({
+      component: AddContentComponent,
+      componentProps: {
+        content: this.content,
+        contentService: this.contentService
+      }
+    })
+    modal.present();
   }
 }
