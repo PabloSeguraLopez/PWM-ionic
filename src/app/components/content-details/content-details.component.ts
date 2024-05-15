@@ -1,4 +1,4 @@
-import { Component, Injector, Input } from '@angular/core';
+import { Component, Injector, Input, OnInit, ViewChild } from '@angular/core';
 import { Content } from "../../interfaces/content";
 import { NgForOf, NgIf, NgOptimizedImage } from "@angular/common";
 import { PlatformService } from "../../services/platform.service";
@@ -6,6 +6,7 @@ import { ReviewComponent } from "./review/review.component";
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { ContentService } from "../../services/content.service";
 import { AddContentComponent } from "../add-content/add-content.component";
+import { IonicModule, IonModal } from "@ionic/angular";
 
 @Component({
   selector: 'app-content',
@@ -16,17 +17,20 @@ import { AddContentComponent } from "../add-content/add-content.component";
     NgForOf,
     NgIf,
     RouterLink,
-    AddContentComponent
+    AddContentComponent,
+    IonicModule
   ],
-  templateUrl: './content.component.html',
-  styleUrl: './content.component.css'
+  templateUrl: './content-details.component.html',
+  styleUrl: './content-details.component.scss'
 })
-export class ContentComponent {
+export class ContentComponent implements OnInit {
   @Input()
   protected contentId: string = "";
   protected contentService: ContentService | undefined;
   protected content?: Content;
   isAddContentOpen: boolean = false;
+
+  @ViewChild(IonModal) modal?: IonModal;
 
   constructor(private platformService: PlatformService, private injector: Injector, private route: ActivatedRoute) { }
 
@@ -54,5 +58,14 @@ export class ContentComponent {
 
   toggleAddContent() {
     this.isAddContentOpen = !this.isAddContentOpen;
+  }
+
+  onWillDismiss($event: Event) {
+    console.log('will dismiss', $event);
+
+  }
+
+  cancel() {
+    this.modal?.dismiss(null, 'cancel');
   }
 }

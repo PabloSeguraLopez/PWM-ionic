@@ -3,12 +3,13 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { RouteReuseStrategy, provideRouter } from '@angular/router';
 import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalone';
 
-import { routes } from './app/app.routes';
+import { routes, SERIES_SERVICE } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { SeriesService } from "./app/services/series.service";
 
 if (environment.production) {
   enableProdMode();
@@ -25,5 +26,9 @@ bootstrapApplication(AppComponent, {
       provideFirestore(() => getFirestore()),
       provideAuth(() => getAuth())
     ]),
+    {
+      provide: SERIES_SERVICE,
+      useClass: SeriesService
+    },
   ]
 });

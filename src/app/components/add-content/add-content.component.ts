@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Content } from "../../interfaces/content";
 import { NgForOf, NgOptimizedImage } from "@angular/common";
 import { RouterLink } from "@angular/router";
@@ -20,7 +20,7 @@ import { ReviewService } from "../../services/review.service";
   templateUrl: './add-content.component.html',
   styleUrl: './add-content.component.css'
 })
-export class AddContentComponent {
+export class AddContentComponent implements OnInit {
   @Input()
   content?: Content;
   @Input()
