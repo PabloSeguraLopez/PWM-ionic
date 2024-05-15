@@ -7,7 +7,7 @@ import { FormsModule } from "@angular/forms";
 import { UserService } from "../../services/user.service";
 import { User } from "../../interfaces/user";
 import { ReviewService } from "../../services/review.service";
-import { ModalController } from "@ionic/angular";
+import { IonicModule, ModalController } from "@ionic/angular";
 
 @Component({
   selector: 'app-add-content',
@@ -16,7 +16,8 @@ import { ModalController } from "@ionic/angular";
     NgOptimizedImage,
     RouterLink,
     NgForOf,
-    FormsModule
+    FormsModule,
+    IonicModule
   ],
   templateUrl: './add-content.component.html',
   styleUrl: './add-content.component.css'

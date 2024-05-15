@@ -1,4 +1,4 @@
-<div id="add-content-page" class="container p-2">
+<ion-content id="add-content-page" class="ion-padding">
   <h1 class="add-content-title text display-3" style="color: #B38867">Add to ranking</h1>
   <div class="add-content-container row row-cols-1 row-cols-md-2 justify-content-center align-items-center gap-5">
     <div class="d-none d-md-block col-md-4">
@@ -21,17 +21,17 @@
             <textarea id="add-content-review-textarea" placeholder="Write a review" rows="5" class="form-control" [(ngModel)]="reviewText"></textarea>
           </div>
           <div>
-            <label class="text text-secondary font-weight-bold" style="font-size: 1.5em" for="add-content-score-select">Score:</label>
-            <select id="add-content-score-select" class="form-select" [(ngModel)]="rating">
-              <option [value]="rating" *ngFor="let rating of ratings">{{rating}}</option>
-            </select>
+            <ion-select label="Score" id="add-content-score-select" [(ngModel)]="rating">
+              <ion-select-option [value]="rating" *ngFor="let rating of ratings">{{rating}}</ion-select-option>
+            </ion-select>
           </div>
         </div>
         <div class="button-container d-flex justify-content-center gap-3">
-          <button class="button" type="button" (click)="submit()">Add to your ranking</button>
-          <button style="background-color: transparent; color:darkred; border: none" type="button" (click)="cancel()">Cancel</button>
+          <ion-button id="btn-submit" expand="block" type="button" (click)="submit()">Add to your ranking</ion-button>
+          <ion-toast trigger="btn-submit" message="Content added to your ranking" [duration]="2000"></ion-toast>
+          <ion-button type="button" (click)="cancel()">Cancel</ion-button>
         </div>
       </div>
     </div>
   </div>
-</div>
+</ion-content>
