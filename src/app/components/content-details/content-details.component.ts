@@ -7,6 +7,7 @@ import { ActivatedRoute, RouterLink } from "@angular/router";
 import { ContentService } from "../../services/content.service";
 import { AddContentComponent } from "../add-content/add-content.component";
 import { IonicModule, IonModal, ModalController, ToastController } from "@ionic/angular";
+import { UserService } from "../../services/user.service";
 
 @Component({
   selector: 'app-content',
@@ -28,12 +29,11 @@ export class ContentComponent implements OnInit {
   protected contentId: string = "";
   protected contentService: ContentService | undefined;
   protected content?: Content;
-  isAddContentOpen: boolean = false;
-
   @ViewChild(IonModal) modal?: IonModal;
   isFavorite: boolean = false;
 
-  constructor(private toastController: ToastController, private modalController: ModalController, private platformService: PlatformService, private injector: Injector, private route: ActivatedRoute) { }
+  constructor(private userService: UserService, private toastController: ToastController, private modalController: ModalController, private platformService: PlatformService, private injector: Injector, private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -58,6 +58,13 @@ export class ContentComponent implements OnInit {
   }
 
   async openAddContentModal() {
+    if (!this.userService.isLogged) {
+      this.toastController.create({
+        message: 'Please login to add content',
+        duration: 2000
+      }).then(toast => toast.present());
+      return;
+    }
     await this.modalController.create({
       component: AddContentComponent,
       componentProps: {
@@ -83,7 +90,7 @@ export class ContentComponent implements OnInit {
     }).then(toast => toast.present());
   }
 
-  toggleFavorite() {
+  private toggleFavorite() {
     this.isFavorite = !this.isFavorite;
   }
 }

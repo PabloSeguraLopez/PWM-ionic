@@ -1,7 +1,7 @@
 <ion-content class="ion-padding">
   <h1 id="summary-title" class="text display-3">{{ content?.title }}</h1>
-  <div class="row row-cols-1 row-cols-lg-2 justify-content-center gap-5" *ngIf="content">
-    <div class="col col-md-6 col-lg-5 col-xl-4">
+  <div class="row row-cols-1 row-cols-lg-2 justify-content-center" *ngIf="content">
+    <div class="col-10 col-md-6 col-lg-5 col-xl-4">
       <div>
         <img class="img-fluid position-relative" ngSrc="{{ content.imageUrl }}" alt="" fill priority/>
       </div>
@@ -11,8 +11,8 @@
         <ion-button id="btn-remove-favorite" expand="block" *ngIf="isFavorite" (click)="removeFavorite()"><i class="bi bi-heart-fill" style="color: red"></i></ion-button>
       </div>
     </div>
-    <div class="col gy-3">
-      <div class="row gy-3">
+    <div class="col">
+      <div class="row">
         <div>
           <h2 class="text text-secondary">Synopsis</h2>
           {{ content.synopsis }}
@@ -26,7 +26,7 @@
           <p>Score: {{ content.rating }}
             <i class="bi bi-star-fill" style="color: orange"></i>
           </p>
-          <p *ngIf="content.author">Author: {{ content.author }}</p>
+          <span *ngIf="content.author">Author: {{ content.author }}</span>
         </div>
         <div>
           <h2 class="text text-secondary">Available on</h2>
@@ -41,8 +41,8 @@
   </div>
   <div class="mt-4">
     <h1 class="text display-3">Reviews</h1>
-    <div class="container gap-3" *ngFor="let reviewId of content?.reviews">
+    <ion-list class="container gap-3" *ngFor="let reviewId of content?.reviews">
       <app-review [id]="reviewId"></app-review>
-    </div>
+    </ion-list>
   </div>
 </ion-content>

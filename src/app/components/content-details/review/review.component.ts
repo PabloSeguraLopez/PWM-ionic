@@ -1,20 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Review } from "../../../interfaces/review";
 import { NgIf } from "@angular/common";
 import { ReviewService } from "../../../services/review.service";
 import { User } from "../../../interfaces/user";
 import { UserService } from "../../../services/user.service";
+import { IonicModule } from "@ionic/angular";
 
 @Component({
   selector: 'app-review',
   standalone: true,
   imports: [
-    NgIf
+    NgIf,
+    IonicModule
   ],
   templateUrl: './review.component.html',
   styleUrl: './review.component.css'
 })
-export class ReviewComponent {
+export class ReviewComponent implements OnInit {
   @Input()
   id: string = '';
   review: Review | null = null;
