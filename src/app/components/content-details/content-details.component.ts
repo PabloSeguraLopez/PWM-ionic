@@ -52,16 +52,15 @@ export class ContentComponent implements OnInit {
     this.contentService.getContentById(this.contentId).subscribe(
       content => this.content = content
     )
-    this.userHasReviewed().then(
-      hasReviewed => this.userHasReview = hasReviewed
-    )
   }
 
   ionViewWillEnter() {
     this.favoriteService.isFavorite(this.contentId).then(
       isFavorite => this.isFavorite = isFavorite
     );
-
+    this.userHasReviewed().then(
+      hasReviewed => this.userHasReview = hasReviewed
+    )
   }
 
   getPlatformUrl(platform: string): string {

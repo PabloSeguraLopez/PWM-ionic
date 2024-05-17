@@ -10,6 +10,15 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { SeriesService } from "./app/services/series.service";
+import { addIcons } from "ionicons";
+import { home, personCircleOutline, star } from "ionicons/icons";
+
+addIcons({
+  'star': star,
+  'home': home,
+  'person': personCircleOutline
+})
+
 
 if (environment.production) {
   enableProdMode();
