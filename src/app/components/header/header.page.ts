@@ -5,7 +5,6 @@ import {NgIf} from "@angular/common";
 import {IonIcon, IonTabBar, IonTabButton, IonTabs} from "@ionic/angular/standalone";
 
 
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.page.html',
