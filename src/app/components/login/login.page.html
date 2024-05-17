@@ -25,7 +25,9 @@
               <ion-img class="w-100" alt="" style="width: 2em; height: 2em; margin-right: 0.5em;" src="assets/images/password.png"></ion-img>
             </ion-col>
             <ion-col size="auto">
-              <ion-input class="custom-input" type="password" required placeholder="Password" name="password" [(ngModel)]="password"></ion-input>
+              <ion-input class="custom-input" type="password" required placeholder="Password" name="password" [(ngModel)]="password">
+                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+              </ion-input>
             </ion-col>
           </ion-row>
 
