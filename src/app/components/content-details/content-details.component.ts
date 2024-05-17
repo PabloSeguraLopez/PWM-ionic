@@ -9,6 +9,7 @@ import { AddContentComponent } from "../add-content/add-content.component";
 import { UserService } from "../../services/user.service";
 import { FavoriteService } from "../../services/favorite.service";
 import { IonButton, IonContent, IonList, IonModal, ModalController, ToastController } from "@ionic/angular/standalone";
+import { ReviewService } from "../../services/review.service";
 
 @Component({
   selector: 'app-content',
@@ -34,8 +35,9 @@ export class ContentComponent implements OnInit {
   protected content?: Content;
   @ViewChild(IonModal) modal?: IonModal;
   isFavorite: boolean = false;
+  protected userHasReview: boolean = false;
 
-  constructor(private favoriteService: FavoriteService, private userService: UserService, private toastController: ToastController, private modalController: ModalController, private platformService: PlatformService, private injector: Injector, private route: ActivatedRoute) {
+  constructor(private reviewService: ReviewService, private favoriteService: FavoriteService, private userService: UserService, private toastController: ToastController, private modalController: ModalController, private platformService: PlatformService, private injector: Injector, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -50,9 +52,16 @@ export class ContentComponent implements OnInit {
     this.contentService.getContentById(this.contentId).subscribe(
       content => this.content = content
     )
+    this.userHasReviewed().then(
+      hasReviewed => this.userHasReview = hasReviewed
+    )
+  }
+
+  ionViewWillEnter() {
     this.favoriteService.isFavorite(this.contentId).then(
       isFavorite => this.isFavorite = isFavorite
     );
+
   }
 
   getPlatformUrl(platform: string): string {
@@ -113,5 +122,16 @@ export class ContentComponent implements OnInit {
 
   private toggleFavorite() {
     this.isFavorite = !this.isFavorite;
+  }
+
+  private async userHasReviewed() {
+    if (!this.userService.isLogged) {
+      return false;
+    }
+    let user = await this.userService.getCurrentUser();
+    if (!user) {
+      return false;
+    }
+    return this.reviewService.userHasReviewed(this.contentId, user.id);
   }
 }

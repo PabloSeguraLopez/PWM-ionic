@@ -42,6 +42,12 @@ export class ReviewService {
     })
   }
 
+  userHasReviewed(contentId: string, userId: string) {
+    const collectionRef = collection(this.firestore, 'reviews');
+    const q = query(collectionRef, where('userId', '==', userId), where('contentId', '==', contentId));
+    return getDocs(q).then(r => !r.empty);
+  }
+
   queryReviewByContentAndUser(contentId: string, userId: string) {
     const collectionRef = collection(this.firestore, 'reviews');
     const q = query(collectionRef, where('userId', '==', userId), where('contentId', '==', contentId));
