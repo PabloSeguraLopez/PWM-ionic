@@ -1,0 +1,16 @@
+  <div class="review row row-cols-1 row-cols-md-2 border rounded-3 align-items-center" *ngIf="review">
+    <ion-grid class="user-container col col-md-3 align-items-center">
+      <ion-row class="row align-items-center">
+        <ion-col size="auto">
+          <img class="user-image" alt="" src="../../../../assets/images/profile.png"/>
+        </ion-col>
+        <ion-col size="8">
+          <ion-row class="gap-3">
+            <span class="user-name">{{user?.username}}</span>
+            <span class="user-score">{{ review.rating }} <i class="bi bi-star-fill" style="color: orange"></i> </span>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div class="review-container col-12 col-md-8">{{review.review}}</div>
+  </div>

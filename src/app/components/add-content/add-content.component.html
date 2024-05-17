@@ -1,0 +1,37 @@
+<ion-content id="add-content-page" class="ion-padding">
+  <h1 class="add-content-title text display-3">Add to ranking</h1>
+  <div class="add-content-container row row-cols-1 row-cols-md-2 justify-content-center align-items-center gap-5">
+    <div class="d-none d-md-block col-md-4">
+      <div>
+        <img class="img-fluid position-relative" ngSrc="{{ content?.imageUrl }}" alt="" fill/>
+      </div>
+    </div>
+    <div class="add-content-form col col-md-5 gy-4">
+
+      <div class="row gy-4 align-items-center">
+        <div class="input-container d-flex flex-column gap-3">
+          <div>
+            <h2 class="text text-secondary"> Title:</h2><p>{{ content?.title }}</p>
+          </div>
+          <div>
+            <h2 class="text text-secondary"> Author:</h2><p>{{ content?.author }}</p>
+          </div>
+          <div>
+            <ion-label class="text text-secondary font-weight-bold">Review:</ion-label>
+            <ion-textarea id="add-content-review-textarea" fill="solid" placeholder="Write a review" rows="5" [(ngModel)]="reviewText"></ion-textarea>
+          </div>
+          <div>
+            <ion-select label="Score" id="add-content-score-select" [(ngModel)]="rating">
+              <ion-select-option [value]="rating" *ngFor="let rating of ratings">{{rating}}</ion-select-option>
+            </ion-select>
+          </div>
+        </div>
+        <div class="button-container d-flex justify-content-center gap-3">
+          <ion-button id="btn-submit" expand="block" type="button" (click)="submit()">Add to your ranking</ion-button>
+          <ion-toast trigger="btn-submit" message="Content added to your ranking" [duration]="2000"></ion-toast>
+          <ion-button type="button" (click)="cancel()">Cancel</ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

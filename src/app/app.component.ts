@@ -1,18 +1,22 @@
-import {Component} from '@angular/core';
-import {environment} from "../environments/environment";
-import {getAnalytics} from "@angular/fire/analytics";
-import {initializeApp} from "@angular/fire/app";
-import {IonicModule} from "@ionic/angular";
+import { Component } from '@angular/core';
+import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
+import { FavoriteService } from "./services/favorite.service";
+import { SplashScreen } from '@capacitor/splash-screen';
 
-// Initialize Firebase
 @Component({
   selector: 'app-root',
+  templateUrl: 'app.component.html',
   standalone: true,
-  imports: [IonicModule
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  imports: [IonApp, IonRouterOutlet],
 })
 export class AppComponent {
-  title = 'MisTops';
+  constructor(private database: FavoriteService) {
+    this.initApp();
+  }
+
+  private async initApp() {
+    await SplashScreen.show({ showDuration: 1500})
+    await this.database.initializeDb();
+    SplashScreen.hide();
+  }
 }
