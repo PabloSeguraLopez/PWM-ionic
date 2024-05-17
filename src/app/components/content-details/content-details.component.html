@@ -30,11 +30,13 @@
         </div>
         <div>
           <h2 class="text text-secondary">Available on</h2>
-          <div class="d-flex gap-3">
-            <a [href]="getPlatformUrl('Netflix')" target="_blank">
-              <img ngSrc="{{ getPlatformIconClass('Netflix') }}" width="32" height="32" alt="">
-            </a>
-          </div>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item bg-light" *ngFor="let platform of content.availableOn">
+              <a [href]="getPlatformUrl(platform)" target="_blank">
+                <img ngSrc="{{ getPlatformIconClass(platform) }}" width="32" height="32" alt="">
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
