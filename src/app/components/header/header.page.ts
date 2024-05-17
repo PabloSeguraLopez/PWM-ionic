@@ -2,7 +2,9 @@ import {Component, OnInit, Renderer2} from '@angular/core';
 import {Router, RouterLink} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {NgIf} from "@angular/common";
-import {IonicModule} from "@ionic/angular";
+import {IonIcon, IonTabBar, IonTabButton, IonTabs} from "@ionic/angular/standalone";
+
+
 
 @Component({
   selector: 'app-header',
@@ -11,7 +13,10 @@ import {IonicModule} from "@ionic/angular";
   imports: [
     RouterLink,
     NgIf,
-    IonicModule
+    IonTabButton,
+    IonIcon,
+    IonTabs,
+    IonTabBar
   ],
   styleUrls: ['./header.page.scss']
 })
