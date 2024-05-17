@@ -10,11 +10,9 @@ export class FavoriteService {
   private db!: SQLiteDBConnection;
   private favorites: Favorite[] = [];
 
-  constructor() {
-    this.initializeDb();
-  }
+  constructor() { }
 
-  private async initializeDb() {
+  async initializeDb() {
     this.db = await this.sqlite.createConnection(
       'data.db',
       false,
@@ -29,8 +27,8 @@ export class FavoriteService {
       type TEXT
       );`;
 
-    console.log('Creating favorite table')
     await this.db.execute(createFavoriteTable);
+    console.log('DB initialized')
     this.loadFavorites();
   }
 
@@ -61,5 +59,11 @@ export class FavoriteService {
   private async loadFavorites() {
     let result = await this.db.query('SELECT * FROM favorite');
     this.favorites = result.values || [];
+  }
+
+  public async isFavorite(contentId: string) {
+    await this.loadFavorites();
+    console.log(this.favorites)
+    return this.favorites.some(favorite => favorite.contentId === contentId);
   }
 }

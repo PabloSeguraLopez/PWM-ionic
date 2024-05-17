@@ -50,6 +50,9 @@ export class ContentComponent implements OnInit {
     this.contentService.getContentById(this.contentId).subscribe(
       content => this.content = content
     )
+    this.favoriteService.isFavorite(this.contentId).then(
+      isFavorite => this.isFavorite = isFavorite
+    );
   }
 
   getPlatformUrl(platform: string): string {
