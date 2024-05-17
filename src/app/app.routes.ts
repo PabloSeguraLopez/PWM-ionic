@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { ContentComponent } from "./components/content-details/content-details.component";
 import { InjectionToken } from "@angular/core";
 import { TabsPage } from "./components/tabs/tabs.page";
 

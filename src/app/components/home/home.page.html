@@ -1,22 +1,42 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <section id="home-welcome-section" *ngIf="!isLoggedIn">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <p id="home-welcome-text" class="text text-primary text-center display-2">Rank and share with your friends!</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="full" routerLink="/login">Get started</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-    <ion-button fill="solid" color="success" routerLink="/series/zcAJJATgGREqgaaMaSlW">Series</ion-button>
-    <ion-button fill="solid" color="success" routerLink="/login">Login</ion-button>
-  </div>
+  <section id="tops-section">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-title>Top Series</ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-row class="carousel">
+        <ion-col *ngFor="let serie of topSeries.slice(0, 10)" size="12" size-md="6" size-lg="4">
+          <div class="slide">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>{{ serie.title }}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <img [src]="serie.imageUrl" [alt]="serie.title">
+                <p class="rating">Rating: {{ serie.rating }}</p>
+                <ion-button  expand="full" routerLink="/series/{{serie.id}}">Go to Review</ion-button>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
 </ion-content>
