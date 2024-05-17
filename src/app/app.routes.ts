@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { InjectionToken } from "@angular/core";
 import { TabsPage } from "./components/tabs/tabs.page";
+import { ContentComponent } from "./components/content-details/content-details.component";
 
 export const SERIES_SERVICE = new InjectionToken<string>('SeriesService');
 

@@ -1,5 +1,3 @@
-
-import { IonButton, IonContent, IonHeader, IonTitle, IonToolbar } from "@ionic/angular/standalone";
 import {TabsPage} from "../tabs/tabs.page";
 import {Component, OnInit} from '@angular/core';
 import {RouterLink} from "@angular/router";
@@ -27,7 +25,7 @@ import {
     NgIf,
     NgOptimizedImage, IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonCol, IonRow, IonGrid, TabsPage],
 })
-export class HomeComponent implements OnInit{
+export class HomePage implements OnInit{
   topSeries: Content[] = [];
   isLoggedIn?: boolean;
 
