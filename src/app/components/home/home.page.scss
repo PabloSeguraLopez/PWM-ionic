@@ -1,27 +1,99 @@
-#container {
+#tops-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2em; /* Reduce el espacio entre elementos para móvil */
+  padding: 0 3%; /* Reduce el padding lateral */
+}
+
+#home-welcome-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  padding: 2em; /* Reduce el padding para móvil */
+}
+
+#home-welcome-text {
+  font-size: 2rem; /* Reduce el tamaño de la fuente */
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+#home-welcome-button {
+  font-size: 1.2rem; /* Reduce el tamaño de la fuente */
+  padding: 0.8rem 1.5rem; /* Ajusta el padding del botón */
+  background-color: #1F506B;
+  color: white;
+  border-radius: 0.5em;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.container {
+  margin: 0 auto;
 }
 
-#container a {
-  text-decoration: none;
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 1em; /* Reduce el espacio entre elementos para móvil */
+  padding: 0.5em 0; /* Reduce el padding superior e inferior */
+  scroll-snap-type: x mandatory;
+}
+
+.slide {
+  flex: 0 0 calc(70% - 1em); /* Ajusta el tamaño de las tarjetas para móvil */
+  min-width: 10em; /* Ajusta el ancho mínimo */
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f2e8e1;
+  border-radius: 1em;
+  overflow: hidden;
+  padding: 1em;
+}
+
+.slide img {
+  width: 100%; /* Asegura que la imagen ocupe todo el ancho disponible */
+  height: auto; /* Mantén la relación de aspecto */
+}
+
+ion-card-title{
+  font-size: 1.4em; /* Reduce el tamaño de la fuente */
+  color: #b38867;
+  margin-bottom: 0.5em;
+}
+
+.slide p {
+  font-size: 1em; /* Reduce el tamaño de la fuente */
+  color: black;
+  text-align: center;
+  margin-top: auto;
+  padding: 5px;
+}
+
+.slide button {
+  font-size: 1em; /* Reduce el tamaño de la fuente */
+  padding: 0.5em 1em; /* Ajusta el padding del botón */
+  background-color: #1F506B;
+  color: white;
+  border: none;
+  border-radius: 0.5em;
+}
+
+.carousel::-webkit-scrollbar {
+  width: 8px; /* Reduce el ancho del scrollbar para móvil */
+}
+
+.carousel::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 6px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+
+.carousel::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

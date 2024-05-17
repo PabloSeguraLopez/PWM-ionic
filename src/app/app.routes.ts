@@ -7,7 +7,7 @@ export const SERIES_SERVICE = new InjectionToken<string>('SeriesService');
 export const routes: Routes = [
   {
     path: 'home',
-    loadComponent: () => import('./components/home/home.page').then((m) => m.HomePage),
+    loadComponent: () => import('./components/home/home.page').then((m) => m.HomeComponent),
   },
   {
     path: '',
