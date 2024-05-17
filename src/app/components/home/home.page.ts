@@ -13,7 +13,7 @@ import {
   IonTitle,
   IonToolbar
 } from "@ionic/angular/standalone";
-import {IonicModule} from "@ionic/angular";
+
 
 @Component({
   selector: 'app-home',
