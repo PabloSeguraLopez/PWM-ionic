@@ -7,7 +7,15 @@ import { FormsModule } from "@angular/forms";
 import { UserService } from "../../services/user.service";
 import { User } from "../../interfaces/user";
 import { ReviewService } from "../../services/review.service";
-import { IonicModule, ModalController } from "@ionic/angular";
+import {
+  IonButton,
+  IonContent,
+  IonLabel,
+  IonSelect,
+  IonSelectOption,
+  IonTextarea,
+  IonToast, ModalController
+} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-add-content',
@@ -17,7 +25,13 @@ import { IonicModule, ModalController } from "@ionic/angular";
     RouterLink,
     NgForOf,
     FormsModule,
-    IonicModule
+    IonContent,
+    IonLabel,
+    IonTextarea,
+    IonSelect,
+    IonSelectOption,
+    IonButton,
+    IonToast
   ],
   templateUrl: './add-content.component.html',
   styleUrl: './add-content.component.css'

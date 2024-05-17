@@ -4,14 +4,16 @@ import { NgIf } from "@angular/common";
 import { ReviewService } from "../../../services/review.service";
 import { User } from "../../../interfaces/user";
 import { UserService } from "../../../services/user.service";
-import { IonicModule } from "@ionic/angular";
+import { IonCol, IonGrid, IonRow } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-review',
   standalone: true,
   imports: [
     NgIf,
-    IonicModule
+    IonGrid,
+    IonCol,
+    IonRow
   ],
   templateUrl: './review.component.html',
   styleUrl: './review.component.css'

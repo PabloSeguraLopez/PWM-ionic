@@ -6,8 +6,9 @@ import { ReviewComponent } from "./review/review.component";
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { ContentService } from "../../services/content.service";
 import { AddContentComponent } from "../add-content/add-content.component";
-import { IonicModule, IonModal, ModalController, ToastController } from "@ionic/angular";
 import { UserService } from "../../services/user.service";
+import { FavoriteService } from "../../services/favorite.service";
+import { IonButton, IonContent, IonList, IonModal, ModalController, ToastController } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-content',
@@ -19,7 +20,9 @@ import { UserService } from "../../services/user.service";
     NgIf,
     RouterLink,
     AddContentComponent,
-    IonicModule
+    IonButton,
+    IonList,
+    IonContent
   ],
   templateUrl: './content-details.component.html',
   styleUrl: './content-details.component.scss'
@@ -32,7 +35,7 @@ export class ContentComponent implements OnInit {
   @ViewChild(IonModal) modal?: IonModal;
   isFavorite: boolean = false;
 
-  constructor(private userService: UserService, private toastController: ToastController, private modalController: ModalController, private platformService: PlatformService, private injector: Injector, private route: ActivatedRoute) {
+  constructor(private favoriteService: FavoriteService, private userService: UserService, private toastController: ToastController, private modalController: ModalController, private platformService: PlatformService, private injector: Injector, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -75,11 +78,22 @@ export class ContentComponent implements OnInit {
   }
 
   addFavorite() {
+    console.log('addFavorite')
+    this.favoriteService.addFavorite({
+      contentId: this.contentId,
+      type: 'series'
+    }).then(r => this.getFavorites());
     this.toggleFavorite();
     this.toastController.create({
       message: 'Added to favorites',
       duration: 2000
     }).then(toast => toast.present());
+  }
+
+  getFavorites() {
+    this.favoriteService.getFavorites().then(
+      favorites => console.log(favorites)
+    )
   }
 
   removeFavorite() {

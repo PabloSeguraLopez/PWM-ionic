@@ -10,17 +10,13 @@ export const routes: Routes = [
     loadComponent: () => import('./components/home/home.page').then((m) => m.HomePage),
   },
   {
-    path: 'login',
-    loadComponent: () => import('./components/login/login.page').then((m) => m.LoginPage)
-  },
-  {
-    path: 'series/:id',
-    component: ContentComponent,
-    data: { requiredService: SERIES_SERVICE }
-  },
-  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
+  },
+  {
+    path: 'series/:id',
+    loadComponent: () => import('./components/content-details/content-details.component').then((m) => m.ContentComponent),
+    data: { requiredService: SERIES_SERVICE }
   },
 ];
