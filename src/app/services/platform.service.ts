@@ -11,6 +11,8 @@ export class PlatformService {
       case 'Netflix':
         return 'https://www.netflix.com/';
       // Add more cases for other platforms
+      case 'Chrunchyroll':
+        return 'https://www.crunchyroll.com/';
       default:
         return '#';
     }
@@ -21,6 +23,8 @@ export class PlatformService {
       case 'Netflix':
         return this.baseUrl + 'netflix.svg';
       // Add more cases for other platforms
+      case 'Crunchyroll':
+        return this.baseUrl + 'crunchyroll.svg';
       default:
         return '';
     }
