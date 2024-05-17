@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
 import { ContentComponent } from "./components/content-details/content-details.component";
 import { InjectionToken } from "@angular/core";
-import { HeaderPage } from "./components/header/header.page";
+import { TabsPage } from "./components/tabs/tabs.page";
 
 export const SERIES_SERVICE = new InjectionToken<string>('SeriesService');
 
 export const routes: Routes = [
   {
     path: 'tabs',
-    component: HeaderPage,
+    component: TabsPage,
     children: [
       {
         path: 'home',

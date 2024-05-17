@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { FavoriteService } from "./services/favorite.service";
 import { SplashScreen } from '@capacitor/splash-screen';
-import { HeaderPage } from "./components/header/header.page";
+import { TabsPage } from "./components/tabs/tabs.page";
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   standalone: true,
-  imports: [IonApp, IonRouterOutlet, HeaderPage],
+  imports: [IonApp, IonRouterOutlet, TabsPage],
 })
 export class AppComponent {
   constructor(private database: FavoriteService) {

@@ -6,8 +6,8 @@ import {IonIcon, IonTabBar, IonTabButton, IonTabs} from "@ionic/angular/standalo
 
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.page.html',
+  selector: 'app-tabs',
+  templateUrl: './tabs.page.html',
   standalone: true,
   imports: [
     RouterLink,
@@ -17,9 +17,9 @@ import {IonIcon, IonTabBar, IonTabButton, IonTabs} from "@ionic/angular/standalo
     IonTabs,
     IonTabBar
   ],
-  styleUrls: ['./header.page.scss']
+  styleUrls: ['./tabs.page.scss']
 })
-export class HeaderPage implements OnInit{
+export class TabsPage implements OnInit{
   islogged: boolean = false;
   constructor(private router: Router, private renderer: Renderer2, private userService: UserService) {
   }
