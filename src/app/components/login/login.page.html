@@ -1,5 +1,5 @@
 <ion-content class="ion-padding">
-  <div class="container mb-3">
+  <div id="content" class="container">
     <div class="ion-align-items-center ion-justify-content-center">
       <div class="ion-col ion-md-12 ion-lg-6 ion-xl-8 ion-hide-md">
         <figure class="landscape-image-figure">
@@ -16,7 +16,7 @@
                 <ion-img class="w-100" alt="" style="width: 2em; height: 2em; margin-right: 0.5em;" src="assets/images/username.png"></ion-img>
               </ion-col>
               <ion-col size="auto" >
-                <ion-input class="custom-input" required placeholder="Email" name="email" [(ngModel)]="email"></ion-input>
+                <ion-input class="ion-text-start custom-input" placeholder="Email" [(ngModel)]="email"></ion-input>
               </ion-col>
             </ion-row>
 
@@ -25,7 +25,9 @@
               <ion-img class="w-100" alt="" style="width: 2em; height: 2em; margin-right: 0.5em;" src="assets/images/password.png"></ion-img>
             </ion-col>
             <ion-col size="auto">
-              <ion-input class="custom-input" type="password" required placeholder="Password" name="password" [(ngModel)]="password"></ion-input>
+              <ion-input class="custom-input ion-text-start" type="password" required placeholder="Password" name="password" [(ngModel)]="password">
+                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+              </ion-input>
             </ion-col>
           </ion-row>
 
