@@ -1,10 +1,13 @@
-.question-text {
+#question-text {
   font-size: 1em;
   cursor: pointer;
   color: darkblue;
 }
+.list-group-item{
+  color:red;
+}
 
-.question-text:hover {
+#question-text:hover {
   text-decoration: underline;
 }
 
@@ -13,9 +16,6 @@
   color: white;
   padding: 0.6em 1em;
   cursor: pointer;
-}
-.custom-input{
-  width:12em;
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
