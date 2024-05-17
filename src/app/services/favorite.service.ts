@@ -14,7 +14,7 @@ export class FavoriteService {
     this.initializeDb();
   }
 
-  async initializeDb() {
+  private async initializeDb() {
     this.db = await this.sqlite.createConnection(
       'data.db',
       false,
@@ -31,15 +31,35 @@ export class FavoriteService {
 
     console.log('Creating favorite table')
     await this.db.execute(createFavoriteTable);
+    this.loadFavorites();
   }
 
-  async getFavorites() {
-    return this.db.query('SELECT * FROM favorite');
-    // this.favorites = favorites.values;
+  public async getFavorites() {
+    return this.favorites;
   }
 
-  addFavorite(favorite: Favorite) {
-    const query = 'INSERT INTO favorite (contentId, type) VALUES (${favorite.contentId}, ${favorite.type})';
-    return this.db.execute(query);
+  public async addFavorite(favorite: Favorite) {
+    const query = `INSERT INTO favorite (contentId, type) VALUES ('${favorite.contentId}', '${favorite.type}')`;
+    try {
+      await this.db.execute(query);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  public async removeFavorite(contentId: string) {
+    const query = `DELETE FROM favorite WHERE contentId='${contentId}'`;
+    try {
+      await this.db.execute(query);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  private async loadFavorites() {
+    let result = await this.db.query('SELECT * FROM favorite');
+    this.favorites = result.values || [];
   }
 }

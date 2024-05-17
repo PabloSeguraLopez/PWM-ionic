@@ -78,30 +78,34 @@ export class ContentComponent implements OnInit {
   }
 
   addFavorite() {
-    console.log('addFavorite')
     this.favoriteService.addFavorite({
       contentId: this.contentId,
       type: 'series'
-    }).then(r => this.getFavorites());
-    this.toggleFavorite();
-    this.toastController.create({
-      message: 'Added to favorites',
-      duration: 2000
-    }).then(toast => toast.present());
-  }
-
-  getFavorites() {
-    this.favoriteService.getFavorites().then(
-      favorites => console.log(favorites)
-    )
+    }).then(success => {
+      if (!success) {
+        console.error('Error adding to favorites')
+        return;
+      }
+      this.toggleFavorite();
+      this.toastController.create({
+        message: 'Added to favorites',
+        duration: 2000
+      }).then(toast => toast.present());
+    });
   }
 
   removeFavorite() {
-    this.toggleFavorite();
-    this.toastController.create({
-      message: 'Removed from favorites',
-      duration: 2000
-    }).then(toast => toast.present());
+    this.favoriteService.removeFavorite(this.contentId).then(success => {
+      if (!success) {
+        console.error('Error removing from favorites')
+        return;
+      }
+      this.toggleFavorite();
+      this.toastController.create({
+        message: 'Removed from favorites',
+        duration: 2000
+      }).then(toast => toast.present());
+    });
   }
 
   private toggleFavorite() {
