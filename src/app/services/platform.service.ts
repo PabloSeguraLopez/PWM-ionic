@@ -11,7 +11,7 @@ export class PlatformService {
       case 'Netflix':
         return 'https://www.netflix.com/';
       // Add more cases for other platforms
-      case 'Chrunchyroll':
+      case 'Crunchyroll':
         return 'https://www.crunchyroll.com/';
       default:
         return '#';
