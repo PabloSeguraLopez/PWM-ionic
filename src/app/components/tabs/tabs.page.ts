@@ -2,20 +2,24 @@ import {Component, OnInit, Renderer2} from '@angular/core';
 import {Router, RouterLink} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {NgIf} from "@angular/common";
-import {IonicModule} from "@ionic/angular";
+import {IonIcon, IonTabBar, IonTabButton, IonTabs} from "@ionic/angular/standalone";
+
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.page.html',
+  selector: 'app-tabs',
+  templateUrl: './tabs.page.html',
   standalone: true,
   imports: [
     RouterLink,
     NgIf,
-    IonicModule
+    IonTabButton,
+    IonIcon,
+    IonTabs,
+    IonTabBar
   ],
-  styleUrls: ['./header.page.scss']
+  styleUrls: ['./tabs.page.scss']
 })
-export class HeaderPage implements OnInit{
+export class TabsPage implements OnInit{
   islogged: boolean = false;
   constructor(private router: Router, private renderer: Renderer2, private userService: UserService) {
   }
