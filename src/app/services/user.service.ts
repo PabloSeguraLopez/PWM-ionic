@@ -3,13 +3,14 @@ import { User } from "../interfaces/user";
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "@angular/fire/auth";
 import {collection, doc, docData, Firestore, getDoc, getDocs, query, setDoc, where, updateDoc} from "@angular/fire/firestore";
 import {BehaviorSubject, Observable} from "rxjs";
+import {getDownloadURL, ref, Storage, uploadBytesResumable} from "@angular/fire/storage";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private _isLoggedIn$: BehaviorSubject<boolean>;
-  constructor(private auth: Auth, private firestore: Firestore) {
+  constructor(private auth: Auth, private firestore: Firestore, private storage: Storage) {
     this._isLoggedIn$ = new BehaviorSubject<boolean>(false);
   }
 
@@ -34,17 +35,18 @@ export class UserService {
     }
   }
 
-  async createUser(email: string, username: string, password: string) {
+  async createUser(email: string, username: string, password: string, profilePictureReference:string) {
     let userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
     const user = userCredential.user;
-    this.createUserDocument(user.uid, email, username);
+    this.createUserDocument(user.uid, email, username, profilePictureReference);
   }
 
-  private createUserDocument(uid: string, email: string, username: string) {
+  private createUserDocument(uid: string, email: string, username: string, profilePictureReference:string) {
     let documentReference = doc(this.firestore, 'users', uid);
     setDoc(documentReference, {
       email: email,
-      username: username
+      username: username,
+      profilePicture: profilePictureReference
     });
   }
 
@@ -82,4 +84,13 @@ export class UserService {
     const q = query(collectionRef, where('userId', '==', userId));
     return getDocs(q);
   }
- }
+
+  public uploadToCloudStorage(fileName: string, data: any) {
+    uploadBytesResumable(ref(this.storage,`archivos/${fileName}`), data);
+  }
+
+  public async referenceToFileInCloudStorage(fileName: string) {
+    return getDownloadURL(ref(this.storage,`archivos/${fileName}`));
+  }
+
+}
