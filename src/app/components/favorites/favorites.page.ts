@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
-import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {SeriesService} from "../../services/series.service";
 import {ReviewService} from "../../services/review.service";
@@ -26,8 +25,7 @@ export class FavoritesPage implements OnInit {
   typeName: string = "TopNotFound";
 
 
-  constructor(private http: HttpClient,
-              private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private serieService: SeriesService, private reviewService: ReviewService, private userService: UserService) { }
 
   ngOnInit() {
