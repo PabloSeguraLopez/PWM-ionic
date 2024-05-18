@@ -19,6 +19,10 @@ export const routes: Routes = [
         loadComponent: () => import('./components/login/login.page').then(m => m.LoginPage)
       },
       {
+        path: 'sign-up',
+        loadComponent: () => import('./components/sign-up/sign-up.page').then(m => m.SignUpPage)
+      },
+      {
         path: 'favorites',
         // loadComponent: () => import('./components/favorites/favorites.page').then(m => m.FavoritesPage)
       }
