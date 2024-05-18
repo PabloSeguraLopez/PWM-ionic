@@ -11,7 +11,7 @@
   </section>
   <section>
     <ion-row class="carousel">
-      <ion-item *ngFor="let top of topEntries" routerLink="/series/getContentById(top.contentId)?.id">
+      <ion-item *ngFor="let top of topEntries" routerLink="/series/{{getContentById(top.contentId)?.id}}">
         <ion-row class="ion-align-items-center" style="width: 100%">
           <ion-col size="12" size-md="auto" class="ion-text-center">
             <ion-img [src]="getContentById(top.contentId)?.imageUrl || '../../../assets/sample.jpg'" class="imagen"></ion-img>
