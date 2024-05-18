@@ -12,6 +12,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { SeriesService } from "./app/services/series.service";
 import { addIcons } from "ionicons";
 import { home, personCircleOutline, star } from "ionicons/icons";
+import {getStorage, provideStorage} from "@angular/fire/storage";
 
 addIcons({
   'star': star,
@@ -31,6 +32,7 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
     provideAuth(() => getAuth()),
     {
       provide: SERIES_SERVICE,
