@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {UserService} from "../../services/user.service";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {IonicModule} from "@ionic/angular";
 
 @Component({
@@ -10,7 +10,7 @@ import {IonicModule} from "@ionic/angular";
   templateUrl: './sign-up.page.html',
   styleUrls: ['./sign-up.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule]
+  imports: [CommonModule, FormsModule, IonicModule, RouterLink]
 })
 export class SignUpPage implements OnInit {
 
@@ -32,12 +32,16 @@ export class SignUpPage implements OnInit {
   }
 
   onSubmit() {
-    this.userService.createUser(this.email, this.username, this.password).then(
-      () => {
-        alert('Signed up!');
-        this.router.navigate(['/login']);
-      }
-    )
+    try {
+      this.userService.createUser(this.email, this.username, this.password).then(
+        () => {
+          alert('Signed up!');
+          this.router.navigate(['/login']);
+        }
+      )
+    } catch (error:any){
+      alert(error.message)
+    }
   }
 
   satisfyRequirements() {
