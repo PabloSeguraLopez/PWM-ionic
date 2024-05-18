@@ -5,12 +5,12 @@
       <div class="slide">
         <ion-card>
           <ion-card-header>
-            <ion-card-title>{{ top.contentId }}</ion-card-title>
+            <ion-card-title> {{ this["seriesService"].getContentById(top.contentId)}}</ion-card-title>
           </ion-card-header>
         </ion-card>
       </div>
       </ion-item>
     </ion-row>
-  <ion-button>Remove from Favorites</ion-button>
+  <ion-button >Remove from Favorites</ion-button>
 </ion-content>
 

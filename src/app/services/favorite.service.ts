@@ -33,6 +33,7 @@ export class FavoriteService {
   }
 
   public getFavorites() {
+    this.loadFavorites();
     return this.favorites;
   }
 

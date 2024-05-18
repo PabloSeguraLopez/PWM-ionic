@@ -17,6 +17,8 @@ import {
   IonContent, IonItem, IonRow,
   IonTitle
 } from "@ionic/angular/standalone";
+import {Content} from "../../interfaces/content";
+
 
 
 @Component({
@@ -31,10 +33,12 @@ export class FavoritesPage implements OnInit {
 
 
   constructor(private http: HttpClient,
-              private route: ActivatedRoute,
-              private serieService: SeriesService, private reviewService: ReviewService, private userService: UserService, private favoritesService: FavoriteService) { }
+              private route: ActivatedRoute, private favoritesService: FavoriteService, private seriesService: SeriesService) { }
 
   ngOnInit() {
+
+  }
+  ionViewWillEnter(){
     this.favoritesList = this.favoritesService.getFavorites();
   }
 
