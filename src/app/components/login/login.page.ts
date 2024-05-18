@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {UserService} from "../../services/user.service";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {
   IonButton,
   IonCol,
@@ -19,7 +19,7 @@ import {
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonRow, IonCol, IonTitle, IonImg, IonInput, IonButton, IonContent, IonInputPasswordToggle]
+  imports: [CommonModule, FormsModule, IonRow, IonCol, IonTitle, IonImg, IonInput, IonButton, IonContent, IonInputPasswordToggle, RouterLink]
 })
 export class LoginPage {
   email: string = '';
