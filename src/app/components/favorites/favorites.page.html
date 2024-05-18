@@ -1,17 +1,8 @@
-<section>
-  <section>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <h1>Favorites</h1>
-
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </section>
+<ion-content>
+  <ion-title> Favorites</ion-title>
   <section>
     <ion-row class="carousel">
-      <ion-item *ngFor="let top of topEntries" routerLink="/series/getContentById(top.contentId)?.id">
+      <ion-item *ngFor="let top of topEntries" routerLink="/series/{{getContentById(top.contentId)?.id}}">
         <ion-row class="ion-align-items-center" style="width: 100%">
           <ion-col size="12" size-md="auto" class="ion-text-center">
             <ion-img [src]="getContentById(top.contentId)?.imageUrl || '../../../assets/sample.jpg'" class="imagen"></ion-img>
@@ -30,9 +21,9 @@
     <div class="ion-text-center" *ngIf="topEntries.length === 0">
       <h2>There is nothing here</h2>
     </div>
-
   </section>
 
   <ion-button>Remove from Favorites</ion-button>
 
-</section>
+</ion-content>
+
