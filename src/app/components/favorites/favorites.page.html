@@ -1,28 +1,16 @@
 <ion-content>
   <ion-title> Favorites</ion-title>
-  <section>
     <ion-row class="carousel">
-      <ion-item *ngFor="let top of topEntries" routerLink="/series/{{getContentById(top.contentId)?.id}}">
+      <ion-item *ngFor="let top of favoritesList">
         <ion-row class="ion-align-items-center" style="width: 100%">
           <ion-col size="12" size-md="auto" class="ion-text-center">
-            <ion-img [src]="getContentById(top.contentId)?.imageUrl || '../../../assets/sample.jpg'" class="imagen"></ion-img>
+            <!ion-img [src]="getContentById(top.contentId)?.imageUrl || '../../../assets/sample.jpg'" class="imagen"><!/ion-img>
           </ion-col>
           <ion-col size="12" size-md="6" class="ion-text-center">
-            <div class="entry_descriptor">
-              <h1 class="entry_name">{{ getContentById(top.contentId)?.title }}</h1>
-              <h2 class="entry_author">{{ getContentById(top.contentId)?.author }}</h2>
-            </div>
           </ion-col>
         </ion-row>
-        <p class="points">{{ top.rating | number:'1.2-2' }}</p>
       </ion-item>
     </ion-row>
-
-    <div class="ion-text-center" *ngIf="topEntries.length === 0">
-      <h2>There is nothing here</h2>
-    </div>
-  </section>
-
   <ion-button>Remove from Favorites</ion-button>
 
 </ion-content>

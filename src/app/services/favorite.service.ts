@@ -32,7 +32,7 @@ export class FavoriteService {
     this.loadFavorites();
   }
 
-  public async getFavorites() {
+  public getFavorites() {
     return this.favorites;
   }
 
