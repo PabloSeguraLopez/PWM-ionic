@@ -6,12 +6,17 @@ import {ActivatedRoute, RouterLink} from "@angular/router";
 import {SeriesService} from "../../services/series.service";
 import {ReviewService} from "../../services/review.service";
 import {UserService} from "../../services/user.service";
-import {Review} from "../../interfaces/review";
-import {ContentService} from "../../services/content.service";
-import {Content} from "../../interfaces/content";
-import {IonicModule} from "@ionic/angular";
 import {Favorite} from "../../interfaces/favorite";
 import {FavoriteService} from "../../services/favorite.service";
+import {
+  IonButton,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonContent, IonItem, IonRow,
+  IonTitle
+} from "@ionic/angular/standalone";
 
 
 @Component({
@@ -19,7 +24,7 @@ import {FavoriteService} from "../../services/favorite.service";
   templateUrl: './favorites.page.html',
   styleUrls: ['./favorites.page.scss'],
   standalone: true,
-  imports: [ CommonModule, FormsModule, IonicModule, RouterLink, HttpClientModule]
+  imports: [CommonModule, FormsModule, RouterLink, HttpClientModule, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonTitle, IonRow, IonItem]
 })
 export class FavoritesPage implements OnInit {
   favoritesList: Favorite[] = [];
