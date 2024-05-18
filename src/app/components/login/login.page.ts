@@ -28,12 +28,13 @@ export class LoginPage {
   constructor(private userService: UserService, private router: Router) {
   }
 
-  onSubmit() {
-    this.userService.login(this.email, this.password).then(
-      () => {
-        alert('Logged in!');
-        this.router.navigate(['/home']);
-      }
-    );
+  async onSubmit() {
+    let loggedInSuccessfully= await this.userService.login(this.email, this.password);
+    if (!loggedInSuccessfully) {
+      alert('Invalid credentials');
+      return;
+    }
+    alert('Logged in!');
+    this.router.navigate(['/tabs/home']);
   }
 }

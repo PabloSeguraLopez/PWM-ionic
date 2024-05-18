@@ -29,12 +29,15 @@ export class HomePage implements OnInit{
   topSeries: Content[] = [];
   isLoggedIn?: boolean;
 
-
-  constructor(private serieService: SeriesService, private userService: UserService) {
+  constructor(private seriesService: SeriesService, private userService: UserService) {
   }
 
   ngOnInit() {
-    this.serieService.getContents().subscribe(series => this.topSeries = series);
-    this.isLoggedIn = this.userService.isLogged;
+    this.seriesService.getContents().subscribe(series => this.topSeries = series);
+    this.userService.isLoggedIn$().subscribe(isLogged => this.isLoggedIn = isLogged);
+  }
+
+  ionViewWillEnter() {
+    this.isLoggedIn = this.userService.isLoggedIn();
   }
 }

@@ -35,6 +35,7 @@ export class ContentComponent implements OnInit {
   protected content?: Content;
   @ViewChild(IonModal) modal?: IonModal;
   isFavorite: boolean = false;
+  isLogged: boolean = false;
   protected userHasReview: boolean = false;
 
   constructor(private reviewService: ReviewService, private favoriteService: FavoriteService, private userService: UserService, private toastController: ToastController, private modalController: ModalController, private platformService: PlatformService, private injector: Injector, private route: ActivatedRoute) {
@@ -52,15 +53,21 @@ export class ContentComponent implements OnInit {
     this.contentService.getContentById(this.contentId).subscribe(
       content => this.content = content
     )
+    this.userService.isLoggedIn$().subscribe(
+      isLogged => {
+        this.isLogged = isLogged
+        this.userHasReviewed().then(
+          hasReviewed => this.userHasReview = hasReviewed
+        )
+      }
+    )
   }
 
   ionViewWillEnter() {
     this.favoriteService.isFavorite(this.contentId).then(
       isFavorite => this.isFavorite = isFavorite
     );
-    this.userHasReviewed().then(
-      hasReviewed => this.userHasReview = hasReviewed
-    )
+    this.isLogged = this.userService.isLoggedIn();
   }
 
   getPlatformUrl(platform: string): string {
@@ -72,20 +79,27 @@ export class ContentComponent implements OnInit {
   }
 
   async openAddContentModal() {
-    if (!this.userService.isLogged) {
+    if (!this.isLogged) {
       this.toastController.create({
         message: 'Please login to add content',
         duration: 2000
       }).then(toast => toast.present());
       return;
     }
-    await this.modalController.create({
+    let modal = await this.modalController.create({
       component: AddContentComponent,
       componentProps: {
         content: this.content,
         contentService: this.contentService
       }
-    }).then(modal => modal.present());
+    });
+    modal.present();
+    modal.onDidDismiss().then(
+      () => this.userHasReviewed().then(
+        hasReviewed => this.userHasReview = hasReviewed
+      )
+    )
+
   }
 
   addFavorite() {
@@ -124,7 +138,7 @@ export class ContentComponent implements OnInit {
   }
 
   private async userHasReviewed() {
-    if (!this.userService.isLogged) {
+    if (!this.isLogged) {
       return false;
     }
     let user = await this.userService.getCurrentUser();
