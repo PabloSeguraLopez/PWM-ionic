@@ -36,7 +36,7 @@ export class SignUpPage implements OnInit {
       this.userService.createUser(this.email, this.username, this.password).then(
         () => {
           alert('Signed up!');
-          this.router.navigate(['/login']);
+          this.router.navigate(['/tabs/login']);
         }
       )
     } catch (error:any){
