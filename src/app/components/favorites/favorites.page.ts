@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {SeriesService} from "../../services/series.service";
 import {ReviewService} from "../../services/review.service";
@@ -16,7 +16,7 @@ import {IonicModule} from "@ionic/angular";
   templateUrl: './favorites.page.html',
   styleUrls: ['./favorites.page.scss'],
   standalone: true,
-  imports: [ CommonModule, FormsModule, IonicModule, RouterLink]
+  imports: [ CommonModule, FormsModule, IonicModule, RouterLink, HttpClientModule]
 })
 export class FavoritesPage implements OnInit {
   topEntries: Review[] = [];
