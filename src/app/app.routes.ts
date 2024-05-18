@@ -24,7 +24,7 @@ export const routes: Routes = [
       },
       {
         path: 'favorites',
-        // loadComponent: () => import('./components/favorites/favorites.page').then(m => m.FavoritesPage)
+        loadComponent: () => import('./components/favorites/favorites.page').then(m => m.FavoritesPage)
       }
     ]
   },
@@ -39,5 +39,10 @@ export const routes: Routes = [
     data: {
       requiredService: SERIES_SERVICE
     }
+  },
+  {
+    path: 'favorites',
+    loadComponent: () => import('./components/favorites/favorites.page').then( m => m.FavoritesPage)
   }
+
 ];
