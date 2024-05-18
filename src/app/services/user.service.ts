@@ -8,14 +8,17 @@ import {BehaviorSubject, Observable} from "rxjs";
   providedIn: 'root'
 })
 export class UserService {
-  isLogged: boolean = false;
-  private isLoggedInSubject: BehaviorSubject<boolean>;
+  private _isLoggedIn$: BehaviorSubject<boolean>;
   constructor(private auth: Auth, private firestore: Firestore) {
-    this.isLoggedInSubject = new BehaviorSubject<boolean>(this.isLogged);
+    this._isLoggedIn$ = new BehaviorSubject<boolean>(false);
   }
 
-  isLoggedIn(): Observable<boolean> {
-    return this.isLoggedInSubject.asObservable();
+  isLoggedIn$(): Observable<boolean> {
+    return this._isLoggedIn$.asObservable();
+  }
+
+  isLoggedIn(){
+    return this._isLoggedIn$.value;
   }
 
   async getCurrentUser() {
@@ -45,15 +48,17 @@ export class UserService {
     });
   }
 
-  login(email: string, password: string) {
-    this.isLogged = true;
-    this.isLoggedInSubject.next(this.isLogged);
-    return signInWithEmailAndPassword(this.auth, email, password);
+  async login(email: string, password: string) {
+    let userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+    if (userCredential.user) {
+      this._isLoggedIn$.next(true);
+      return true;
+    }
+    return false;
   }
 
   logout() {
-    this.isLogged = false;
-    this.isLoggedInSubject.next(this.isLogged);
+    this._isLoggedIn$.next(false);
     return signOut(this.auth);
   }
 

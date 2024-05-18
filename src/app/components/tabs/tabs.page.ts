@@ -25,7 +25,7 @@ export class TabsPage implements OnInit{
   }
 
   ngOnInit() {
-    this.userService.isLoggedIn().subscribe(isLogged => {
+    this.userService.isLoggedIn$().subscribe(isLogged => {
       this.islogged = isLogged;
     });
   }

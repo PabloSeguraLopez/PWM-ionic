@@ -3,12 +3,16 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <p id="home-welcome-text" class="text text-primary text-center display-2">Rank and share with your friends!</p>
+          @if (!isLoggedIn) {
+            <p id="home-welcome-text" class="text text-primary text-center display-2">Welcome to SeriesRank!</p>
+          }
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button expand="full" routerLink="/login">Get started</ion-button>
+          @if (!isLoggedIn) {
+            <ion-button expand="full" routerLink="../login">Get started</ion-button>
+          }
         </ion-col>
       </ion-row>
     </ion-grid>
