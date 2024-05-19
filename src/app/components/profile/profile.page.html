@@ -1,0 +1,22 @@
+<ion-content>
+  <ion-grid class="container-fluid" id="profile-container">
+    <ion-row class="mt-4">
+      <ion-col>
+        <h1 class="text-start" id="profile-main-text">Your Profile</h1>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="justify-content-center align-items-center mt-4 gy-2">
+      <ion-col sizeLg="3" sizeMd="6" sizeSm="6" size="6">
+        <ion-img src="{{picture}}" class="img-fluid mx-auto d-block" alt="Imagen de Perfil"></ion-img>
+      </ion-col>
+
+      <ion-col sizeLg="6" sizeMd="10" sizeSm="10" size="10" class="align-self-center" id="profile-info">
+        <ng-container>
+          <p>Name: {{user.username}}</p>
+        </ng-container>
+        <p>Email: {{user.email}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

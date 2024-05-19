@@ -8,7 +8,11 @@
       <ion-icon name="star"></ion-icon>
       Favorites
     </ion-tab-button>
-    <ion-tab-button tab="login">
+    <ion-tab-button tab="login" *ngIf="!islogged">
+      <ion-icon name="person"></ion-icon>
+      Log In
+    </ion-tab-button>
+    <ion-tab-button tab="profile" *ngIf="islogged">
       <ion-icon name="person"></ion-icon>
       Profile
     </ion-tab-button>
