@@ -3,7 +3,7 @@ import { User } from "../interfaces/user";
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "@angular/fire/auth";
 import {collection, doc, docData, Firestore, getDoc, getDocs, query, setDoc, where, updateDoc} from "@angular/fire/firestore";
 import {BehaviorSubject, Observable} from "rxjs";
-import {getDownloadURL, ref, Storage, uploadBytesResumable} from "@angular/fire/storage";
+import {getDownloadURL, ref, Storage, uploadBytes} from "@angular/fire/storage";
 
 @Injectable({
   providedIn: 'root'
@@ -86,7 +86,7 @@ export class UserService {
   }
 
   public uploadToCloudStorage(fileName: string, data: any) {
-    uploadBytesResumable(ref(this.storage,`archivos/${fileName}`), data);
+    uploadBytes(ref(this.storage,`archivos/${fileName}`), data);
   }
 
   public async referenceToFileInCloudStorage(fileName: string) {
