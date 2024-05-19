@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {ActivatedRoute, RouterLink} from "@angular/router";
+import {HttpClientModule} from "@angular/common/http";
+import {RouterLink} from "@angular/router";
 import {SeriesService} from "../../services/series.service";
 import {Content} from "../../interfaces/content";
 import {Favorite} from "../../interfaces/favorite";
@@ -17,9 +17,6 @@ import {
   IonTitle
 } from "@ionic/angular/standalone";
 
-
-
-
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.page.html',
@@ -29,19 +26,24 @@ import {
 })
 export class FavoritesPage{
   favoritesList: Favorite[] = [];
-  selected: string = "";
   contentList: Content[] = []
 
 
-  constructor(private http: HttpClient,
-              private route: ActivatedRoute, private favoritesService: FavoriteService, private seriesService: SeriesService) { }
+  constructor( private favoritesService: FavoriteService, private seriesService: SeriesService) { }
 
   ionViewWillEnter(){
+    this.loadContent();
+  }
+  loadContent(){
     this.favoritesList = this.favoritesService.getFavorites();
     this.contentList = [];
     for(let favorite of this.favoritesList){
-        this.seriesService.getContentById(favorite.contentId).subscribe((content )=> {this.contentList.push(content)});
+      this.seriesService.getContentById(favorite.contentId).subscribe((content )=> {this.contentList.push(content)});
     }
+  }
+  deleteFavorite(id: string){
+    this.favoritesService.removeFavorite(id);
+    this.loadContent();
   }
 
 }

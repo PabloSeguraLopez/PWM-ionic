@@ -3,14 +3,14 @@
     <ion-row class="carousel">
       <ion-item *ngFor="let content of contentList">
       <div class="slide">
-        <ion-card>
+        <ion-card class="d-flex flex-column align-items-center">
           <ion-card-header>
             <ion-card-title > {{ content.title}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <img [src]="content.imageUrl" [alt]="content.title">
           </ion-card-content>
-          <ion-button (click)="this['favoritesService'].removeFavorite(content.id)">Remove from Favorites</ion-button>
+          <ion-button (click)="deleteFavorite(content.id)">Remove from Favorites</ion-button>
         </ion-card>
       </div>
       </ion-item>
