@@ -18,6 +18,8 @@ import {
   IonTitle
 } from "@ionic/angular/standalone";
 import {Content} from "../../interfaces/content";
+import {ContentService} from "../../services/content.service";
+import {Observable} from "rxjs";
 
 
 
@@ -28,19 +30,21 @@ import {Content} from "../../interfaces/content";
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink, HttpClientModule, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonTitle, IonRow, IonItem]
 })
-export class FavoritesPage implements OnInit {
+export class FavoritesPage{
   favoritesList: Favorite[] = [];
+  selected: string = "";
+  contentList: Content[] = []
 
 
   constructor(private http: HttpClient,
-              private route: ActivatedRoute, private favoritesService: FavoriteService, private seriesService: SeriesService) { }
+              private route: ActivatedRoute, private favoritesService: FavoriteService, private seriesService: SeriesService, private contentService: ContentService) { }
 
-  ngOnInit() {
-
-  }
   ionViewWillEnter(){
     this.favoritesList = this.favoritesService.getFavorites();
+    this.contentList = [];
+    for(let favorite of this.favoritesList){
+        this.seriesService.getContentById(favorite.contentId).subscribe((content )=> {this.contentList.push(content)});
+    }
   }
-
 
 }

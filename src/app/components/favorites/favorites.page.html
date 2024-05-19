@@ -1,11 +1,11 @@
 <ion-content>
   <ion-title> Favorites</ion-title>
     <ion-row class="carousel">
-      <ion-item *ngFor="let top of favoritesList">
+      <ion-item *ngFor="let content of contentList">
       <div class="slide">
         <ion-card>
           <ion-card-header>
-            <ion-card-title> {{ this["seriesService"].getContentById(top.contentId)}}</ion-card-title>
+            <ion-card-title > {{ content.title}}</ion-card-title>
           </ion-card-header>
         </ion-card>
       </div>
