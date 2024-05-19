@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import {User} from "../../interfaces/user";
 import {UserService} from "../../services/user.service";
 import {IonicModule} from "@ionic/angular";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,7 @@ import {IonicModule} from "@ionic/angular";
 export class ProfilePage {
   user: User = {id:'', username:'', email:'', profilePicture:''};
   picture = '/assets/images/profile.png';
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
   }
 
   ionViewWillEnter() {
@@ -32,6 +33,10 @@ export class ProfilePage {
     if (this.user.profilePicture){
       this.userService.referenceToFileInCloudStorage(this.user.profilePicture).then((picture)=>{this.picture = picture})
     }
+  }
+
+  logOut(){
+    this.userService.logout().then(() => this.router.navigate(['/tabs/home']));
   }
 
 }

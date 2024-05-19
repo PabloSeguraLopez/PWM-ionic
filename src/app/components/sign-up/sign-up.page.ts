@@ -100,4 +100,7 @@ export class SignUpPage implements OnInit {
 
     return result;
   }
+  onChange(event:any) {
+    this.profilePicture = event.target.files[0];
+  }
 }
