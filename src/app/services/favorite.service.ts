@@ -29,10 +29,11 @@ export class FavoriteService {
 
     await this.db.execute(createFavoriteTable);
     console.log('DB initialized')
-    this.loadFavorites();
+    await this.loadFavorites();
   }
 
-  public getFavorites() {
+  public async getFavorites() {
+    await this.loadFavorites();
     return this.favorites;
   }
 

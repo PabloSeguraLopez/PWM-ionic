@@ -1,17 +1,18 @@
 <ion-content>
   <ion-title> Favorites</ion-title>
     <ion-row class="carousel">
-      <ion-item *ngFor="let top of favoritesList">
-        <ion-row class="ion-align-items-center" style="width: 100%">
-          <ion-col size="12" size-md="auto" class="ion-text-center">
-            <!ion-img [src]="getContentById(top.contentId)?.imageUrl || '../../../assets/sample.jpg'" class="imagen"><!/ion-img>
-          </ion-col>
-          <ion-col size="12" size-md="6" class="ion-text-center">
-          </ion-col>
-        </ion-row>
+      <ion-item *ngFor="let content of contentList">
+      <div class="slide">
+        <ion-card class="d-flex flex-column align-items-center">
+          <ion-card-header>
+            <ion-card-title > {{ content.title}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <img [src]="content.imageUrl" [alt]="content.title">
+          </ion-card-content>
+          <ion-button (click)="deleteFavorite(content.id)">Remove from Favorites</ion-button>
+        </ion-card>
+      </div>
       </ion-item>
     </ion-row>
-  <ion-button>Remove from Favorites</ion-button>
-
 </ion-content>
-

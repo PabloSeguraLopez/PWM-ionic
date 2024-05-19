@@ -1,37 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {ActivatedRoute, RouterLink} from "@angular/router";
-import {SeriesService} from "../../services/series.service";
-import {ReviewService} from "../../services/review.service";
-import {UserService} from "../../services/user.service";
-import {Review} from "../../interfaces/review";
-import {ContentService} from "../../services/content.service";
-import {Content} from "../../interfaces/content";
-import {IonicModule} from "@ionic/angular";
-import {Favorite} from "../../interfaces/favorite";
-import {FavoriteService} from "../../services/favorite.service";
-
+import { HttpClientModule } from "@angular/common/http";
+import { RouterLink } from "@angular/router";
+import { SeriesService } from "../../services/series.service";
+import { Content } from "../../interfaces/content";
+import { Favorite } from "../../interfaces/favorite";
+import { FavoriteService } from "../../services/favorite.service";
+import {
+  IonButton,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonContent, IonItem, IonRow,
+  IonTitle
+} from "@ionic/angular/standalone";
+import { firstValueFrom } from "rxjs";
 
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.page.html',
   styleUrls: ['./favorites.page.scss'],
   standalone: true,
-  imports: [ CommonModule, FormsModule, IonicModule, RouterLink, HttpClientModule]
+  imports: [CommonModule, FormsModule, RouterLink, HttpClientModule, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonTitle, IonRow, IonItem]
 })
-export class FavoritesPage implements OnInit {
+export class FavoritesPage {
   favoritesList: Favorite[] = [];
+  contentList: Content[] = []
 
-
-  constructor(private http: HttpClient,
-              private route: ActivatedRoute,
-              private serieService: SeriesService, private reviewService: ReviewService, private userService: UserService, private favoritesService: FavoriteService) { }
-
-  ngOnInit() {
-    this.favoritesList = this.favoritesService.getFavorites();
+  constructor(private favoritesService: FavoriteService, private seriesService: SeriesService) {
   }
 
+  ionViewWillEnter() {
+    this.loadContent();
+  }
 
+  async loadContent() {
+    this.favoritesList = await this.favoritesService.getFavorites();
+    this.contentList = [];
+    for (let favorite of this.favoritesList) {
+      firstValueFrom(this.seriesService.getContentById(favorite.contentId)).then(
+        (content) => {
+          this.contentList.push(content)
+        });
+    }
+  }
+
+  async deleteFavorite(id: string) {
+    await this.favoritesService.removeFavorite(id);
+    this.loadContent();
+  }
 }
