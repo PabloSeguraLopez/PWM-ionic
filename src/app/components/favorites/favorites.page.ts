@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {SeriesService} from "../../services/series.service";
-import {ReviewService} from "../../services/review.service";
-import {UserService} from "../../services/user.service";
+import {Content} from "../../interfaces/content";
 import {Favorite} from "../../interfaces/favorite";
 import {FavoriteService} from "../../services/favorite.service";
 import {
@@ -17,9 +16,7 @@ import {
   IonContent, IonItem, IonRow,
   IonTitle
 } from "@ionic/angular/standalone";
-import {Content} from "../../interfaces/content";
-import {ContentService} from "../../services/content.service";
-import {Observable} from "rxjs";
+
 
 
 
@@ -37,7 +34,7 @@ export class FavoritesPage{
 
 
   constructor(private http: HttpClient,
-              private route: ActivatedRoute, private favoritesService: FavoriteService, private seriesService: SeriesService, private contentService: ContentService) { }
+              private route: ActivatedRoute, private favoritesService: FavoriteService, private seriesService: SeriesService) { }
 
   ionViewWillEnter(){
     this.favoritesList = this.favoritesService.getFavorites();

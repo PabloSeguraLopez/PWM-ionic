@@ -7,10 +7,12 @@
           <ion-card-header>
             <ion-card-title > {{ content.title}}</ion-card-title>
           </ion-card-header>
+          <ion-card-content>
+            <img [src]="content.imageUrl" [alt]="content.title">
+          </ion-card-content>
+          <ion-button (click)="this['favoritesService'].removeFavorite(content.id)">Remove from Favorites</ion-button>
         </ion-card>
       </div>
       </ion-item>
     </ion-row>
-  <ion-button >Remove from Favorites</ion-button>
 </ion-content>
-
