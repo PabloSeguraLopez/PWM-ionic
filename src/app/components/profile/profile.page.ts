@@ -16,10 +16,12 @@ import {Router} from "@angular/router";
 export class ProfilePage {
   user: User = {id:'', username:'', email:'', profilePicture:''};
   picture = '/assets/images/profile.png';
+  editingMode: boolean = false;
   constructor(private userService: UserService, private router: Router) {
   }
 
   ionViewWillEnter() {
+    this.editingMode = false;
     this.userService.getCurrentUser().then(user => {
       if (user) {
         this.user = user;
@@ -37,6 +39,22 @@ export class ProfilePage {
 
   logOut(){
     this.userService.logout().then(() => this.router.navigate(['/tabs/home']));
+  }
+  toggleEditMode() {
+    if (this.editingMode) {
+
+      this.userService.updateUsername(this.user.id, this.user.username)
+        .then(() => {
+          console.log('Nombre de usuario actualizado correctamente');
+        })
+        .catch(error => {
+          console.error('Error al actualizar el nombre de usuario:', error);
+        });
+
+      this.editingMode = false;
+    } else {
+      this.editingMode = true;
+    }
   }
 
 }

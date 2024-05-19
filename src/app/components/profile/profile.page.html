@@ -12,10 +12,18 @@
       </ion-col>
 
       <ion-col sizeLg="6" sizeMd="10" sizeSm="10" size="10" class="align-self-center" id="profile-info">
-        <ng-container>
+        <ng-container *ngIf="!editingMode; else editModeTemplate">
           <p>Name: {{user.username}}</p>
         </ng-container>
+        <ng-template #editModeTemplate>
+          <ion-input type="text" placeholder="Insert new name" [(ngModel)]="user.username" class="form-control"></ion-input>
+        </ng-template>
         <p>Email: {{user.email}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row class="justify-content-center align-items-center mt-4">
+      <ion-col size="12" class="ion-text-center">
+        <ion-button (click)="toggleEditMode()">{{editingMode ? 'Save' : 'Edit'}}</ion-button>
       </ion-col>
     </ion-row>
     <ion-row class="justify-content-center align-items-center mt-4">
